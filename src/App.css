@@ -1,9 +1,10 @@
-body{
+body {
   margin: 0;
   padding: 0;
 }
 
- .lado{  /*estilo da navbar lateral */
+.lado {
+  /*estilo da navbar lateral */
   height: 100%;
   width: 22%;
   position: fixed;
@@ -16,7 +17,7 @@ body{
 
 
 
-.lembretes{
+.lembretes {
   height: 20vh;
   width: 50%;
   background-color: rgba(137, 43, 226, 0.397);
@@ -24,7 +25,8 @@ body{
   color: aliceblue;
 }
 
-.botao-salvar, .botao-cancelar {
+.botao-salvar,
+.botao-cancelar {
   padding: 7px 13px;
   margin-left: 4px;
   cursor: pointer;
@@ -37,19 +39,21 @@ body{
   margin-right: 5px;
 }
 
-.mensagemm{
-    flex: 1;
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #c732d4;
-    border-radius: 4px;
-    width: 80%;
+.mensagemm {
+  flex: 1;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #c732d4;
+  border-radius: 4px;
+  width: 80%;
 }
 
-#mensagem{
+#mensagem {
   margin-top: '8px';
   font-size: 14px;
- 
+
 }
 
+Calendar{
 
+}
