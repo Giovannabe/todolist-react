@@ -3,50 +3,73 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .primeiro{
-  height: 9vh;
-  background-color: #ffcceb;
-  width: 100%;
-  display: flex;
+  height: 10vh;
+  background-color: #ae81b3;
+  width: 100%; 
   box-shadow: 0 4px 8px rgba(136, 74, 136, 0.13);
+  position: fixed;
 }
 
 .primeiro img{
-  height: 10vh;
-  margin-left: 40px ;
+  margin-top: 8px;
+  height: 8vh;
+  margin-left: 55px ;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.363);
 }
 
 .lado {
   /*estilo da navbar lateral */
   height: 100%;
   width: 20%;
-  position: fixed;
-  background-color: #ffd3ee;
+  position: fixed; /* Tornar a div inferior absoluta */
+  top: 73px;
+  background-color: #e5cee7;
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.fotoperfil img{
-     width: 120%; 
-     height: 100%; 
+.fotoperfil img{ 
+     margin-top: 30px;
      border-radius:50%;
      max-height: 100px; 
      max-Width:100px; 
+     
 }
 
+.bordaperfil{
+  margin-left: 22px;
+  height: 30vh;
+  width: 84%;
+  background-color: #fcf1f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.bordaperfil h3{
+  margin-left: 4px;
+}
 .lembretes {
+  margin-left: 20px;
   height: 20vh;
   width: 70%;
-  background-color: rgb(218, 132, 206);
+  background-color: #f8f2f4;
   text-align: center;
   color: rgb(34, 34, 34);
   margin-bottom: 20px;
   border-radius: 10%;
-  border: 3px #9c1385 dashed;
+  border: 3px #ae81b3 dashed;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -82,7 +105,7 @@ body {
 .outrolado {
   display: block;
   padding-left: 30%;
-  padding-top: 2%;
+  padding-top: 9%;
   width: 30%;
 }
 
@@ -149,7 +172,7 @@ body {
 
 .react-calendar {
   font-family: 'Arial', sans-serif;
-  background-color: #ffe3f8;
+  background-color: #fdecf2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -173,7 +196,7 @@ body {
 
 /* Estilo para o cabeçalho do calendário */
 .react-calendar__navigation {
-  background-color: #9034db46;
+  background-color: #ae81b3;
   color: #fff;
 }
 
@@ -187,10 +210,19 @@ body {
   background-color: #a129b9;
 }
 
+.eventosdiv{
+  background-color:  #f8f2f4;
+  height: 50vh;
+  width: 84.4%;
+  border: 2px dashed #ae81b3;
+  margin-top: 4px;
+  border-radius: 2%;
+}
+
 .outrolado2{
   margin-left: 60%;
-  width: 40%;
-  margin-top: -270px;
+  width: 35%;
+  margin-top: -620px;
 }
 
 .outrolado2 h1{
@@ -198,6 +230,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color:  #f8e3ea;
 }
 
 #taskInput {
@@ -209,9 +242,9 @@ ul {
   padding: 0;
 }
 
-li {
+ li {
   display: flex;
-  margin-bottom: 5px;
+  background-color:  #f8f2f4;
 }
 
 

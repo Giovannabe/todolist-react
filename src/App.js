@@ -126,11 +126,27 @@ const [tasks, setTasks] = useState([]);
   // inicio
   return (
     <div className="tudo">
+
      <div className='primeiro'>
       <img src='imagens/my.png'/>
-       
+    
+      <img src='imagens/my.png'/>
+
+      <img src='imagens/my.png'/>
+
+      <img src='imagens/my.png'/>
+
+      <img src='imagens/my.png'/>
+
+      <img src='imagens/my.png'/>
+
+      <img src='imagens/my.png'/>
+
      </div>
+     
+
       <div className="lado">
+        <div className='bordaperfil'>
         <div className='fotoperfil' style={{ display: 'flex', alignItems: 'center' }}>
           {imagemPerfil && (
             <img
@@ -149,8 +165,9 @@ const [tasks, setTasks] = useState([]);
             style={{ display: 'none' }}
           />
         </div>
+        
         <h3>Hilise</h3>
-
+       </div>
         <div className='lembretes'>
           <h2>Lembrete do dia</h2>
           {modoEdicao ? (
@@ -242,8 +259,9 @@ const [tasks, setTasks] = useState([]);
           </div>
         </Modal>
         <div>
+          <div className='eventosdiv'>
           <h3>Eventos Adicionados:</h3>
-          <ul>
+          <ul className='cora'>
             {events.map((event, index) => (
               <li key={index}>
                 <strong>{event.date.toLocaleDateString()}</strong>: {event.event}
@@ -251,6 +269,7 @@ const [tasks, setTasks] = useState([]);
               </li>
             ))}
           </ul>
+        </div>
         </div>
       </div>
 
@@ -270,7 +289,7 @@ const [tasks, setTasks] = useState([]);
 
       <ul>
         {tasks.map((task, index) => (
-          <li key={index} className='listinha'>
+          <li key={index} className='listu'>
             <input
               type="checkbox"
               checked={task.completed}
