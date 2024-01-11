@@ -1,21 +1,54 @@
-import logo from './logo.svg';
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
+import Modal from 'react-modal';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
 
+Modal.setAppElement('#root');
+
 function App() {
 
-  const [dataSelecionada, setDataSelecionada] = useState(new Date());
-  const [eventos, setEventos] = useState([
-    { date: new Date(2022, 0, 10), title: 'Evento 1' },
-    { date: new Date(2022, 0, 15), title: 'Evento 2' },
-    
-  ]);
-  const onChangeData = data => {
-    setDataSelecionada(data);
+  // evento do calendario
+  const [date, setDate] = useState(new Date());
+  const [event, setEvent] = useState('');
+  const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [eventDates, setEventDates] = useState([]);
+  const handleDateChange = (date) => {
+    setDate(date);
+    openModal();
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEvent('');
+  };
+
+  const handleEventChange = (e) => {
+    setEvent(e.target.value);
+  };
+
+  const handleAddEvent = () => {
+    if (event.trim() !== '') {
+      setEvents([...events, { date, event }]);
+      setEventDates((prevEventDates) => [...prevEventDates, date]);
+    }
+    
+    closeModal();
+  };
+
+  const handleDeleteEvent = (index) => {
+    const updatedEvents = [...events];
+    updatedEvents.splice(index, 1);
+    setEvents(updatedEvents);
+  };
+  
+
+  // evento de mudança de foto de perfil
   const [imagemPerfil, setImagemPerfil] = useState(null);
 
   const handleImagemChange = (e) => {
@@ -29,10 +62,10 @@ function App() {
     }
   };
 
+  // evento de mudança de lembrete do dia
   const [mensagem, setMensagem] = useState('Clique na caneta para editar a mensagem.');
   const [modoEdicao, setModoEdicao] = useState(false);
   const [novaMensagem, setNovaMensagem] = useState('');
-  const maxCaracteres = 50;
   const iniciarEdicao = () => {
     setModoEdicao(true);
   };
@@ -48,21 +81,66 @@ function App() {
     setNovaMensagem('');
   };
 
+// evento de mudança de lembrete do dia
+const [mensagem2, setMensagem2] = useState('Clique na caneta para editar a mensagem.');
+const [modoEdicao2, setModoEdicao2] = useState(false);
+const [novaMensagem2, setNovaMensagem2] = useState('');
+const iniciarEdicao2 = () => {
+  setModoEdicao2(true);
+};
+
+const salvarEdicao2 = () => {
+  setMensagem2(novaMensagem2);
+  setModoEdicao2(false);
+  setNovaMensagem2('');
+};
+
+const cancelarEdicao2 = () => {
+  setModoEdicao2(false);
+  setNovaMensagem2('');
+};
+
+// evento da lista
+const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const addTask = () => {
+    if (newTask.trim() !== '') {
+      setTasks([...tasks, { text: newTask, completed: false }]);
+      setNewTask('');
+    }
+  };
+
+  const toggleTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    setTasks(updatedTasks);
+  };
+
+  const deleteTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+  };
+
+  // inicio
   return (
     <div className="tudo">
-
+     <div className='primeiro'>
+      <img src='imagens/my.png'/>
+       
+     </div>
       <div className="lado">
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className='fotoperfil' style={{ display: 'flex', alignItems: 'center' }}>
           {imagemPerfil && (
             <img
               src={imagemPerfil}
               alt="Imagem de Perfil"
-              style={{ width: '100px', height: '100px', borderRadius: '50%' }}
             />
           )}
           <label htmlFor="input-imagem" style={{ cursor: 'pointer', marginLeft: '-30px', marginTop: '80px' }}>
             📷
-          </label> 
+          </label>
           <input
             id="input-imagem"
             type="file"
@@ -77,7 +155,9 @@ function App() {
           <h2>Lembrete do dia</h2>
           {modoEdicao ? (
             <div>
-              <input className='mensagemm'
+              <input
+                maxLength={60}
+                className='mensagemm'
                 type="text"
                 value={novaMensagem}
                 onChange={(e) => setNovaMensagem(e.target.value)}
@@ -100,17 +180,119 @@ function App() {
             </div>
           )}
         </div>
-        <div>
-      <h2>Meu Calendário</h2>
-      <Calendar
-        onChange={onChangeData}
-        value={dataSelecionada}
-      />
-    </div>
-      </div>
-      
 
+        <div className='lembretes'>
+          <h2>Lembrete da semana</h2>
+          {modoEdicao2 ? (
+            <div>
+              <input
+                maxLength={60}
+                className='mensagemm'
+                type="text"
+                value={novaMensagem2}
+                onChange={(e) => setNovaMensagem2(e.target.value)}
+              />
+              <button className="botao-salvar" onClick={salvarEdicao2}>Salvar</button>
+              <button className="botao-cancelar" onClick={cancelarEdicao2}>Cancelar</button>
+            </div>
+          ) : (
+            <div>
+
+              <div id="mensagem" style={{ overflowWrap: 'break-word' }}>{mensagem2}</div>
+              <span
+                role="img"
+                aria-label="Caneta"
+                style={{ cursor: 'pointer', paddingLeft: '50px', wordWrap: 'break-word' }}
+                onClick={iniciarEdicao2}
+              >
+                ✏️
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className='outrolado'>
+        <Calendar
+          onChange={handleDateChange}
+          value={date}
+          tileClassName={({ date, view }) =>
+            eventDates.some((eventDate) => date.getDate() === eventDate.getDate()) && view === 'month'
+              ? 'react-calendar__tile--hasEvent'
+              : null
+          }
+        />
+
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          contentLabel="Adicionar Evento"
+          className="modal"
+        >
+          <h2>Adicionar Evento</h2>
+          <div>
+            <p>Data selecionada: {date.toLocaleDateString()}</p>
+            <label>
+              Evento:
+              <input type="text" value={event} onChange={handleEventChange} />
+            </label>
+          </div>
+          <div>
+            <button onClick={handleAddEvent}>Adicionar</button>
+            <button onClick={closeModal}>Cancelar</button>
+          </div>
+        </Modal>
+        <div>
+          <h3>Eventos Adicionados:</h3>
+          <ul>
+            {events.map((event, index) => (
+              <li key={index}>
+                <strong>{event.date.toLocaleDateString()}</strong>: {event.event}
+                <button className='deletar' onClick={() => handleDeleteEvent(index)}>❌</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+    <div className='outrolado2'>
+      <h1>Planejamento do Dia</h1>
+
+      <div className='listadia'>
+      <input
+      className='listaa'
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Digite uma tarefa"
+        />
+        <button className='bot' onClick={addTask}>Adicionar Tarefa</button>
+      </div>
+
+      <ul>
+        {tasks.map((task, index) => (
+          <li key={index} className='listinha'>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(index)}
+            />
+            <span
+              style={{ textDecoration: task.completed ? 'line-through' : 'none' }}
+            >
+              {task.text}
+            </span>
+            <span
+              className="deleteTask"
+              onClick={() => deleteTask(index)}
+            >
+              ❌
+            </span>
+          </li>
+        ))}
+      </ul>
+      </div>
     </div>
+
   );
 }
 
