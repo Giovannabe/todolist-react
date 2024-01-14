@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import Modal from 'react-modal';
 import 'react-calendar/dist/Calendar.css';
 import './App.css';
+import axios from 'axios';
 
 Modal.setAppElement('#root');
 
 function App() {
+
+   //evento do tempo
+  const [location, setLocation] = useState(false);
+  const [weather, setWeather]  = useState(false);
+
+  let getWeather = async (lat, long) => {
+     let res = await axios.get("https://openweathermap.org/weathermap?basemap=map&cities=true&layer=temperature&lat=-22.0675&lon=-46.5649&zoom=5" , {
+      params: {
+        lat: lat,
+        long: long,
+        appid: process.env.REACT_APP_OPEN_WHEATHER_KEY,
+        lang: 'pt',
+        units: 'metric'
+      }
+     });
+     setWeather(res.data);
+  }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      getWeather(position.coords.latitude, position.coords.longitude);
+      setLocation(true)
+    })
+  }, [])
 
   // evento do calendario
   const [date, setDate] = useState(new Date());
@@ -128,19 +153,30 @@ const [tasks, setTasks] = useState([]);
     <div className="tudo">
 
      <div className='primeiro'>
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png' alt='immmm'/>
     
-      <img src='imagens/my.png'/>
+      <img src='imagens/login.jpg' alt='immm'/>
 
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png' alt='imm'/>
 
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png' alt='imm'/>
 
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png' alt='imm'/>
 
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png' alt='imm'/>
 
-      <img src='imagens/my.png'/>
+      <img src='imagens/my.png'  alt='immm'/>
+
+    <Fragment>
+        <h3>Clima (Exemplo)</h3>
+        <hr/>
+        <ul>
+          <li>Temperatura atual: x°</li>
+          <li>Temperatura Max: x°</li>
+          <li>Temperatura Min: x°</li>
+        </ul>
+
+      </Fragment> 
 
      </div>
      

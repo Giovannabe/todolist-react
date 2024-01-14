@@ -8,7 +8,7 @@ body {
 
 .primeiro{
   height: 10vh;
-  background-color: #ae81b3;
+  background-color: #9c7e7e;
   width: 100%; 
   box-shadow: 0 4px 8px rgba(136, 74, 136, 0.13);
   position: fixed;
@@ -27,9 +27,9 @@ body {
   /*estilo da navbar lateral */
   height: 100%;
   width: 20%;
-  position: fixed; /* Tornar a div inferior absoluta */
+  position: fixed;
   top: 73px;
-  background-color: #e5cee7;
+  background-color: #a88888;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -55,6 +55,7 @@ body {
   margin-top: 15px;
   border-radius: 20px;
   margin-bottom: 20px;
+  box-shadow: 0 0 7px rgb(255, 255, 255);
 }
 
 .bordaperfil h3{
@@ -105,7 +106,7 @@ body {
 .outrolado {
   display: block;
   padding-left: 30%;
-  padding-top: 9%;
+  padding-top: 7%;
   width: 30%;
 }
 
@@ -196,7 +197,7 @@ body {
 
 /* Estilo para o cabeçalho do calendário */
 .react-calendar__navigation {
-  background-color: #ae81b3;
+  background-color: #b38f8f;
   color: #fff;
 }
 
@@ -263,13 +264,13 @@ ul {
 
 .bot{
   height: 4.5vh;
-  background-color: #ae81b3;
+  background-color: #b38f8f;
   font-size: 14px;
   color: white;
 }
 
 .bot:hover{
-  background-color: #af4c96;
+  background-color: #917474;
   color: whitesmoke;
 }
 
